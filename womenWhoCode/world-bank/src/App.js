@@ -8,12 +8,19 @@ class App extends Component {
     super();
     this.state = {
       chartData: {},
+      country: '',
     };
   }
 
   componentWillMount() {
     this.getChartData();
   }
+
+  setCountry = text => {
+    this.setState({
+      country: text,
+    });
+  };
 
   getChartData() {
     // Ajax calls here
@@ -22,7 +29,7 @@ class App extends Component {
         labels: ['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
         datasets: [
           {
-            label: 'Population',
+            label: this.state.country,
             data: [617594, 181045, 153060, 106519, 105162, 95072],
             backgroundColor: [
               'rgba(255, 99, 132, 0.6)',
@@ -46,10 +53,10 @@ class App extends Component {
           <h1 className="App-title">Data for a Better World</h1>
         </header>
         <div className="side-menu">
-          <SideMenu />
+          <SideMenu setCountry={this.setCountry} />
         </div>
         <div>
-          <Graph chartData={this.state.chartData} location="Massachusetts" legendPosition="bottom" />
+          <Graph chartData={this.state.chartData} location={this.state.country} legendPosition="bottom" />
         </div>
       </div>
     );

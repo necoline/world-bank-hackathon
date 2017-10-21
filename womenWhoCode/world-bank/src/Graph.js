@@ -19,8 +19,8 @@ class Graph extends Component {
 
   render() {
     return (
-      <div className="chart">
-        <Bar
+      <div className="graph">
+        {/* <Bar
           data={this.state.chartData}
           options={{
             title: {
@@ -33,14 +33,14 @@ class Graph extends Component {
               position: this.props.legendPosition,
             },
           }}
-        />
+        /> */}
 
         <Line
           data={this.state.chartData}
           options={{
             title: {
               display: this.props.displayTitle,
-              text: 'Largest Cities In ' + this.props.location,
+              text: 'GDP In ' + this.props.location,
               fontSize: 25,
             },
             legend: {
@@ -50,7 +50,7 @@ class Graph extends Component {
           }}
         />
 
-        <Pie
+        {/* <Pie
           data={this.state.chartData}
           options={{
             title: {
@@ -63,7 +63,7 @@ class Graph extends Component {
               position: this.props.legendPosition,
             },
           }}
-        />
+        /> */}
       </div>
     );
   }

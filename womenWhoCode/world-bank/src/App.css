@@ -43,3 +43,9 @@
   padding: 2%;
   margin-left: 5%;
 }
+
+.graph {
+  float: right;
+  width: 70vw;
+  padding: 5%;
+}
