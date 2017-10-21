@@ -5,3 +5,5 @@
 #Hackathon Title : Social Justice
 
 #Project Title: World bank Data Analysis
+
+Data Structure : JSON
