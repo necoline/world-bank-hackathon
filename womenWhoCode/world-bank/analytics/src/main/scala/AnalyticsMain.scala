@@ -19,18 +19,28 @@ object Analytics{
     val conf = new SparkConf().setAppName("World Bank Analytics")
     val sc = new SparkContext(conf)
     val inputData = sc.textFile(inputPath, 2).cache()
-    val rdd = inputData.map { line =>
-      line.split(",") match {
-        case Array(cName, cCode, iName, iCode, timeSeries @_*) => {
-          val countryKey = CountryKey(cName, cCode)
-          val indicatorKey = IndicatorKey(iName, iCode)
-          val metricKey = MetricKey(countryKey, indicatorKey)
 
-          val ts = timeSeries.map(a => a.toDouble)
+    val header = inputData.first
 
-          (metricKey, ts)
+    val rdd = inputData
+      .filter(_ != header)
+      .map { line =>
+        line.stripPrefix("\"").stripSuffix("\",").split("\",\"") match {
+          case Array(cName, cCode, iName, iCode, timeSeries @_*) => {
+            val countryKey = CountryKey(cName, cCode)
+            val indicatorKey = IndicatorKey(iName, iCode)
+            val metricKey = MetricKey(countryKey, indicatorKey)
+            // val ts = timeSeries
+            val ts = timeSeries.map {x => 
+              x match {
+                case x if (! x.isEmpty) => Some(x.toDouble)
+                case _ => None
+              }
+            }
+
+            (metricKey, ts)
+          }
         }
-      }
     }
     rdd.take(10).foreach(println(_))
 
