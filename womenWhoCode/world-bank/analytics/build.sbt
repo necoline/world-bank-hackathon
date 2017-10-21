@@ -1,4 +1,4 @@
-name := "Poor Ratio Calculations"
+name := "World Bank Analytics"
 
 version := "1.0"
 
