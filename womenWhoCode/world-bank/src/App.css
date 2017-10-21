@@ -2,16 +2,12 @@
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
 .App-header {
-  background-color: #222;
-  height: 150px;
+  background-color: #263238;
+  height: 10vh;
   padding: 20px;
   color: white;
+  font-family: Eurostile, sans-serif;
 }
 
 .App-title {
@@ -22,7 +18,28 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.side-menu {
+  background-color: #78909C;
+  width: 20vw;
+  height: 90vh;
+  float: left;
+  margin-top: 0;
+}
+
+.menu-title {
+  font-family: Eurostile, sans-serif;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+  padding: 5%;
+}
+
+.menu-sub-title {
+  font-family: Eurostile, sans-serif;
+  color: white;
+  font-size: 1em;
+  text-align: left;
+  padding: 2%;
+  margin-left: 5%;
 }
