@@ -3,10 +3,11 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: #263238;
   height: 10vh;
   padding: 20px;
   color: white;
+  font-family: Eurostile, sans-serif;
 }
 
 .App-title {
@@ -18,9 +19,27 @@
 }
 
 .side-menu {
-  background-color: green;
+  background-color: #78909C;
   width: 20vw;
   height: 90vh;
   float: left;
   margin-top: 0;
+}
+
+.menu-title {
+  font-family: Eurostile, sans-serif;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-align: left;
+  padding: 5%;
+}
+
+.menu-sub-title {
+  font-family: Eurostile, sans-serif;
+  color: white;
+  font-size: 1em;
+  text-align: left;
+  padding: 2%;
+  margin-left: 5%;
 }
