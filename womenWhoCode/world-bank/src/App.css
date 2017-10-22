@@ -43,3 +43,15 @@
   padding: 2%;
   margin-left: 5%;
 }
+
+.graph {
+  float: right;
+  width: 70vw;
+  height: 65vh;
+  padding: 5%;
+  overflow-y: scroll;
+}
+
+.img {
+  height: 600px;
+}
