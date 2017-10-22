@@ -75,12 +75,21 @@ class App extends Component {
           <SideMenu setCountry={this.setCountry} />
         </div>
         <div>
+          {this.state.country.length > 1
+            ? <Graph
+                chartData={this.state.chartData}
+                infantChartData={this.state.infantChartData}
+                location={this.state.country}
+                legendPosition="bottom"
+              />
+            : <img src="../map.svg" className="img" />}
+          {/* <img src="../map.svg" className="img" />
           <Graph
             chartData={this.state.chartData}
             infantChartData={this.state.infantChartData}
             location={this.state.country}
             legendPosition="bottom"
-          />
+          /> */}
         </div>
       </div>
     );
