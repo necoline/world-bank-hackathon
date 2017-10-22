@@ -9,6 +9,10 @@
 # production
 /build
 
+# analytics
+/target
+/project
+
 # misc
 .DS_Store
 .env.local
@@ -17,5 +21,6 @@
 .env.production.local
 
 npm-debug.log*
-yarn-debug.log*
+yarn-de
+bug.log*
 yarn-error.log*
