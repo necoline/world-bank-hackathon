@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Bar, Line, Pie } from 'react-chartjs-2';
+import { Bar, Line } from 'react-chartjs-2';
 
 class Graph extends Component {
   constructor(props) {
@@ -20,20 +20,6 @@ class Graph extends Component {
   render() {
     return (
       <div className="graph">
-        {/* <Bar
-          data={this.state.chartData}
-          options={{
-            title: {
-              display: this.props.displayTitle,
-              text: 'Largest Cities In ' + this.props.location,
-              fontSize: 25,
-            },
-            legend: {
-              display: this.props.displayLegend,
-              position: this.props.legendPosition,
-            },
-          }}
-        /> */}
 
         <Line
           data={this.state.chartData}
@@ -50,12 +36,12 @@ class Graph extends Component {
           }}
         />
 
-        {/* <Pie
-          data={this.state.chartData}
+        <Bar
+          data={this.props.infantChartData}
           options={{
             title: {
               display: this.props.displayTitle,
-              text: 'Largest Cities In ' + this.props.location,
+              text: 'Infant Mortality Rate In ' + this.props.location,
               fontSize: 25,
             },
             legend: {
@@ -63,7 +49,8 @@ class Graph extends Component {
               position: this.props.legendPosition,
             },
           }}
-        /> */}
+        />
+
       </div>
     );
   }
