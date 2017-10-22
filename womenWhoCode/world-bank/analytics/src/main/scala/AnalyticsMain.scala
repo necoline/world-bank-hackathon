@@ -23,6 +23,8 @@ case class TimeSeries(ts: Vector[TimeValue]) {
   def avg() = if (tsDefined.length > 0) tsDefined.sum / tsDefined.length else 0d
   def max = if (tsDefined.length > 0) tsDefined.max else 0
   def min = if (tsDefined.length > 0) tsDefined.min else 0
+
+  def toJsArray = ts.filter(_.value.isDefined).map(a => a.date + ":" + a.value.get.toString)
 }
 
 
@@ -80,10 +82,19 @@ object Analytics{
         }
     }
 
+    val rawColl = db("gdpRaw")
+    val mongoRaw = rdd.map { case (key, ts) =>
+      val keyJson = (key.country.name + " " + key.indicator.name).replace(".","")
+      val tsJson = ts.toJsArray
+
+      (keyJson, tsJson)}.collect.toMap
+    rawColl.insert(mongoRaw)
+
+
     // rdd.take(10).foreach(println(_))
 
     val aggColl = db("gdpAggregations")
-    val mongoAggregations = rdd.flatMap { case (key, ts) =>
+    val mongoAggregations = rdd.map { case (key, ts) =>
       // val keyJson = { "{\n" + "\"Country Name\": \"" + key.country.name + "\",\n" +
       //                      "\"Country Code\": \"" + key.country.code + "\",\n" +
       //                      "\"Indicator Name\": \"" + key.indicator.name + "\",\n" +
@@ -97,10 +108,12 @@ object Analytics{
       //               }
       val keyJson = (key.country.name + " " + key.indicator.name).replace(".","")
       val avg = ts.avg.toString
-      val M = ts.max.toString
+      val Ma = ts.max.toString
       val m = ts.min.toString
 
-      List((keyJson + " average", avg), (keyJson + " max", M), (keyJson + " min", m))
+      val aggJson = List("average: " + avg, "max: " + Ma, "min: " + m)
+      (keyJson, aggJson)
+      // List((keyJson + " average", avg), (keyJson + " max", M), (keyJson + " min", m))
     }
     val x = mongoAggregations.collect.toMap
     // println(x)
